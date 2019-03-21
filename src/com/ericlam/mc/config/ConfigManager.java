@@ -1,4 +1,4 @@
-package com.ericlam.mc.config;
+﻿package com.ericlam.mc.config;
 
 import com.ericlam.mc.main.KillRewards;
 import org.apache.commons.io.FileUtils;
@@ -95,16 +95,16 @@ public class ConfigManager {
         File[] data = folder.listFiles();
         if (data == null || data.length == 0) return;
         for (File playerdata : data) {
-            if (debug) plugin.getLogger().info("正在重設資料 \"" + playerdata.getName() + "\"");
+            if (debug) plugin.getLogger().info("甇����身鞈�� \"" + playerdata.getName() + "\"");
             if (!playerdata.exists()) {
-                if (debug) plugin.getLogger().info("文件不存在，已取消重設");
+                if (debug) plugin.getLogger().info("��辣銝�嚗歇����身");
                 continue;
             }
             FileConfiguration filedata = YamlConfiguration.loadConfiguration(playerdata);
             filedata.set("max-uses", maxuse);
             filedata.save(playerdata);
             YamlConfiguration.loadConfiguration(playerdata);
-            if (debug) plugin.getLogger().info("重設成功");
+            if (debug) plugin.getLogger().info("��身����");
         }
         playerUse.keySet().forEach(key -> playerUse.put(key, maxuse));
     }
@@ -112,14 +112,14 @@ public class ConfigManager {
     public void resetData(UUID uuid) throws IOException {
         int maxuse = config.getInt("max-uses");
         File playerdata = new File(folder, uuid.toString() + ".yml");
-        if (debug) plugin.getLogger().info("正在重設玩家資料: " + playerdata.getName());
+        if (debug) plugin.getLogger().info("甇����身�摰嗉���: " + playerdata.getName());
         if (playerdata.exists()) {
             FileConfiguration data;
             data = YamlConfiguration.loadConfiguration(playerdata);
             data.set("max-uses", maxuse);
             data.save(playerdata);
             YamlConfiguration.loadConfiguration(playerdata);
-            if (debug) plugin.getLogger().info("重設成功");
+            if (debug) plugin.getLogger().info("��身����");
         }
         playerUse.put(uuid, maxuse);
     }
@@ -149,7 +149,7 @@ public class ConfigManager {
             data.set("max-uses", uses);
             data.save(playerdata);
             YamlConfiguration.loadConfiguration(playerdata);
-            if (debug) plugin.getLogger().info("資料設置成功");
+            if (debug) plugin.getLogger().info("鞈�身蝵格���");
         }
     }
 
@@ -165,12 +165,12 @@ public class ConfigManager {
             FileConfiguration data = YamlConfiguration.loadConfiguration(playerdata);
             int uses = data.getInt("max-uses");
             playerUse.put(uuid,uses);
-            if (debug) plugin.getLogger().info("成功把文件資料添加到快取");
+            if (debug) plugin.getLogger().info("�����辣鞈�溶��敹怠��");
         }else{
             int maxuse = config.getInt("max-uses");
             playerUse.put(uuid,maxuse);
             add(playerdata, maxuse);
-            if (debug) plugin.getLogger().info("資料不存在，添加一個新的");
+            if (debug) plugin.getLogger().info("鞈���嚗溶�������");
         }
     }
 
@@ -191,12 +191,12 @@ public class ConfigManager {
             data.save(playerdata);
             YamlConfiguration.loadConfiguration(playerdata);
             playerUse.put(uuid, uses);
-            if (debug) plugin.getLogger().info("次數添加成功");
+            if (debug) plugin.getLogger().info("甈⊥瘛餃����");
         } else {
             int maxuse = config.getInt("max-uses") + add;
             playerUse.put(uuid, maxuse);
             add(playerdata, maxuse);
-            if (debug) plugin.getLogger().info("資料不存在，添加一個新的");
+            if (debug) plugin.getLogger().info("鞈���嚗溶�������");
         }
     }
 
